@@ -18,11 +18,15 @@ interface Product {
   category: string;
   description: string;
   features: string[];
+  hirePurchase?: {
+    deposit: number;
+    monthlyInstallment: number;
+    period: number;
+  };
   id: string;
   image: string;
   inStock: boolean;
   name: string;
-  originalPrice?: number;
   price: number;
   rating: number;
   specs: Record<string, string>;
@@ -32,8 +36,8 @@ interface Product {
 /*                         Helpers (shared, memo-safe)                        */
 /* -------------------------------------------------------------------------- */
 
-const CURRENCY_FORMATTER = new Intl.NumberFormat("en-US", {
-  currency: "USD",
+const CURRENCY_FORMATTER = new Intl.NumberFormat("en-KE", {
+  currency: "KES",
   style: "currency",
 });
 
@@ -48,191 +52,314 @@ const slugify = (str: string) =>
 const range = (length: number) => Array.from({ length }, (_, i) => i);
 
 /* -------------------------------------------------------------------------- */
-/*                        Static product data (demo only)                     */
+/*                        Static product data                                 */
 /* -------------------------------------------------------------------------- */
 
 const products: Product[] = [
   {
-    category: "Audio",
+    category: "Water Tanks",
     description:
-      "Experience crystal-clear sound with our premium wireless headphones. Featuring active noise cancellation, 30-hour battery life, and comfortable over-ear design for all-day listening comfort.",
+      "Perfect for medium-sized families. One-piece, seamless tank molded from 100% Food and Drug Administration (FDA) approved material. Will not rust or impart any taste. The corrugated body allows it to stand upright making it more durable and easy to use.",
     features: [
-      "Active noise cancellation",
-      "30-hour battery life",
-      "Bluetooth 5.2 connectivity",
-      "Comfortable memory foam ear cushions",
-      "Quick charge - 5 minutes for 4 hours of playback",
-      "Built-in microphone for calls",
+      "100% FDA approved material",
+      "One-piece seamless construction",
+      "Will not rust or impart any taste",
+      "Corrugated body for extra durability",
+      "Stands upright for easy use",
+      "Free nationwide installation included",
     ],
+    hirePurchase: {
+      deposit: 5000,
+      monthlyInstallment: 1300,
+      period: 18,
+    },
     id: "1",
     image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80",
     inStock: true,
-    name: "Premium Wireless Headphones",
-    originalPrice: 249.99,
-    price: 199.99,
-    rating: 4.5,
+    name: "3000L Rainwater Harvesting Tank",
+    price: 19500,
+    rating: 4.9,
     specs: {
-      batteryLife: "30 hours",
-      brand: "AudioMax",
-      connectivity: "Bluetooth 5.2, 3.5mm jack",
-      model: "WH-1000XM5",
-      warranty: "2 years",
-      weight: "250g",
-    },
-  },
-  {
-    category: "Wearables",
-    description:
-      "Stay connected and track your fitness goals with our advanced smartwatch. Features health monitoring, GPS tracking, and a beautiful always-on display.",
-    features: [
-      "Health monitoring (heart rate, ECG, sleep)",
-      "Water resistant up to 50m",
-      "GPS tracking",
-      "7-day battery life",
-      "Always-on retina display",
-      "Customizable watch faces",
-    ],
-    id: "2",
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    inStock: true,
-    name: "Smart Watch Series 5",
-    originalPrice: 349.99,
-    price: 299.99,
-    rating: 4.2,
-    specs: {
-      batteryLife: "7 days",
-      brand: "TechFit",
-      compatibility: "iOS, Android",
-      display: '1.5" AMOLED',
-      model: "Watch Pro 5",
-      warranty: "1 year",
-      waterResistance: "5 ATM",
-    },
-  },
-  {
-    category: "Photography",
-    description:
-      "Capture stunning photos and videos with our professional camera kit. Includes a high-resolution sensor, 4K video recording, and a versatile lens kit for any shooting situation.",
-    features: [
-      "24.2MP full-frame sensor",
-      "4K video recording at 60fps",
-      "5-axis image stabilization",
-      "Weather-sealed body",
-      "Dual SD card slots",
-      "Includes 24-70mm f/2.8 lens",
-    ],
-    id: "3",
-    image:
-      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    inStock: false,
-    name: "Professional Camera Kit",
-    originalPrice: 1499.99,
-    price: 1299.99,
-    rating: 4.8,
-    specs: {
-      brand: "OptiPro",
-      iso: "100-51,200 (expandable to 204,800)",
-      model: "X-1000",
-      resolution: "24.2MP",
-      sensorType: "Full-frame CMOS",
-      shutter: "1/8000 to 30 sec",
-      warranty: "2 years",
-    },
-  },
-  {
-    category: "Furniture",
-    description:
-      "Work in comfort with our ergonomic office chair designed for all-day support. Features adjustable height, lumbar support, and breathable mesh back.",
-    features: [
-      "Adjustable height and armrests",
-      "Breathable mesh back",
-      "Lumbar support",
-      "360° swivel",
-      "Heavy-duty base with smooth-rolling casters",
-      "Weight capacity: 300 lbs",
-    ],
-    id: "4",
-    image:
-      "https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    inStock: true,
-    name: "Ergonomic Office Chair",
-    originalPrice: 299.99,
-    price: 249.99,
-    rating: 4.6,
-    specs: {
-      adjustableHeight: "16-20 inches",
-      brand: "ErgoComfort",
-      dimensions: '26"W x 26"D x 38-42"H',
-      material: "Mesh back, fabric seat",
-      maxWeight: "300 lbs",
-      model: "Executive Pro",
+      capacity: "3000 Liters",
+      cashPrice: "KES 19,500",
+      construction: "One-piece seamless",
+      deposit: "KES 5,000",
+      material: "100% FDA approved polymer",
+      monthlyInstallment: "KES 1,300 for 18 months",
       warranty: "5 years",
     },
   },
   {
-    category: "Electronics",
+    category: "Water Tanks",
     description:
-      "The ultimate smartphone experience with a stunning display, powerful camera system, and all-day battery life.",
+      "Ideal for larger families or small businesses. This 5000L tank is molded from 100% FDA approved material ensuring your water stays clean and safe. The robust corrugated design ensures maximum durability while the seamless construction prevents leaks.",
     features: [
-      '6.7" Super Retina XDR display',
-      "Triple camera system (12MP wide, ultra-wide, telephoto)",
-      "Face ID for secure authentication",
-      "A16 Bionic chip",
-      "Up to 1TB storage",
-      "All-day battery life",
+      "100% FDA approved material",
+      "One-piece seamless construction",
+      "Will not rust or impart any taste",
+      "Corrugated body for superior strength",
+      "Stands upright for easy use",
+      "Free nationwide installation included",
     ],
-    id: "5",
+    hirePurchase: {
+      deposit: 7000,
+      monthlyInstallment: 1500,
+      period: 18,
+    },
+    id: "2",
     image:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
     inStock: true,
-    name: "Smartphone Pro Max",
-    originalPrice: 1099.99,
-    price: 999.99,
+    name: "5000L Rainwater Storage Tank",
+    price: 25000,
     rating: 4.9,
     specs: {
-      battery: "4,352mAh",
-      brand: "TechPro",
-      camera: "12MP triple camera system",
-      display: '6.7" Super Retina XDR',
-      model: "Galaxy Pro Max",
-      os: "iOS 16",
-      processor: "A16 Bionic chip",
-      storage: "128GB/256GB/512GB/1TB",
-      warranty: "1 year",
+      capacity: "5000 Liters",
+      cashPrice: "KES 25,000",
+      construction: "One-piece seamless",
+      deposit: "KES 7,000",
+      material: "100% FDA approved polymer",
+      monthlyInstallment: "KES 1,500 for 18 months",
+      warranty: "5 years",
     },
   },
   {
-    category: "Electronics",
+    category: "Water Tanks",
     description:
-      "Transform your home entertainment with our Ultra HD Smart TV featuring vibrant colors, immersive sound, and smart connectivity.",
+      "Our largest capacity tank for extended families, schools, or commercial use. The 10000L tank features the same FDA-approved construction as our smaller tanks but with enhanced structural support for the larger volume. Perfect for water security in areas with unreliable water supply.",
     features: [
-      '55" 4K Ultra HD display',
-      "Dolby Vision HDR",
-      "Dolby Atmos sound",
-      "Built-in voice assistant",
-      "Smart home integration",
-      "Multiple HDMI and USB ports",
+      "100% FDA approved material",
+      "One-piece seamless construction",
+      "Will not rust or impart any taste",
+      "Reinforced corrugated body",
+      "Stands upright for easy use",
+      "Free nationwide installation included",
     ],
-    id: "6",
+    hirePurchase: {
+      deposit: 8000,
+      monthlyInstallment: 3000,
+      period: 18,
+    },
+    id: "3",
     image:
-      "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
     inStock: true,
-    name: 'Ultra HD Smart TV 55"',
-    originalPrice: 899.99,
-    price: 799.99,
+    name: "10000L Large Capacity Tank",
+    price: 49500,
+    rating: 5.0,
+    specs: {
+      capacity: "10000 Liters",
+      cashPrice: "KES 49,500",
+      construction: "One-piece seamless with reinforcement",
+      deposit: "KES 8,000",
+      material: "100% FDA approved polymer",
+      monthlyInstallment: "KES 3,000 for 18 months",
+      warranty: "7 years",
+    },
+  },
+  {
+    category: "Purification Systems",
+    description:
+      "Our signature 8-layer purification system removes 99.9% of contaminants including bacteria, viruses, and heavy metals. Designed specifically for rainwater and tap water, ensuring your family drinks safe, clean water every day. Each layer targets specific contaminants for comprehensive protection.",
+    features: [
+      "8-stage filtration process",
+      "Removes bacteria and viruses (99.9%)",
+      "Heavy metal filtration",
+      "Mineral retention technology",
+      "Easy filter replacement",
+      "Low maintenance design",
+    ],
+    id: "4",
+    image:
+      "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=800&q=80",
+    inStock: true,
+    name: "8-Layer Tap Water Purifier",
+    price: 12000,
+    rating: 4.8,
+    specs: {
+      capacity: "Up to 1000L per day",
+      filterLife: "6-12 months (replaceable)",
+      filtrationLayers: "8 layers (sediment, carbon, ceramic, UV, mineral)",
+      installation: "Wall-mounted or countertop",
+      warranty: "3 years",
+    },
+  },
+  {
+    category: "Purification Systems",
+    description:
+      "Advanced UV purification technology for maximum protection. This system uses ultraviolet light to destroy harmful microorganisms without chemicals, perfect for households with young children or elderly members. Automatically activates when water flows through.",
+    features: [
+      "UV-C sterilization technology",
+      "Chemical-free purification",
+      "Automatic flow sensor activation",
+      "Low energy consumption",
+      "Digital display with filter alerts",
+      "Annual UV bulb replacement",
+    ],
+    id: "5",
+    image:
+      "https://images.unsplash.com/photo-1624969862293-b749659ccc4e?w=800&q=80",
+    inStock: true,
+    name: "Advanced UV Water Filter",
+    price: 18000,
     rating: 4.7,
     specs: {
-      audio: "40W Dolby Atmos",
-      brand: "VisionPro",
-      connectivity: "HDMI x4, USB x3, Wi-Fi, Bluetooth",
-      display: '55" 4K Ultra HD LED',
-      hdr: "Dolby Vision, HDR10+",
-      model: "X55-4K",
-      refreshRate: "120Hz",
-      resolution: "3840 x 2160",
-      smartFeatures: "Voice control, App store",
+      capacity: "Up to 2000L per day",
+      powerConsumption: "40W",
+      technology: "UV-C + Carbon filtration",
+      uvBulbLife: "12 months",
+      warranty: "3 years",
+    },
+  },
+  {
+    category: "Complete Systems",
+    description:
+      "Everything you need in one package. This complete system includes our 3000L FDA-approved tank, 8-layer purifier, guttering connection kit, and professional installation. Start harvesting clean rainwater immediately with this all-in-one solution.",
+    features: [
+      "3000L FDA-approved tank included",
+      "8-layer purification system",
+      "Complete gutter collection kit",
+      "Tank stand and base",
+      "All plumbing connections",
+      "Professional installation included",
+    ],
+    hirePurchase: {
+      deposit: 6000,
+      monthlyInstallment: 1700,
+      period: 18,
+    },
+    id: "6",
+    image:
+      "https://images.unsplash.com/photo-1583266722259-2d6f3d8e65?w=800&q=80",
+    inStock: true,
+    name: "3000L Complete Water System",
+    price: 28500,
+    rating: 4.9,
+    specs: {
+      cashPrice: "KES 28,500",
+      components: "3000L Tank + 8-Layer Purifier + Accessories",
+      deposit: "KES 6,000",
+      installation: "Free professional installation nationwide",
+      monthlyInstallment: "KES 1,700 for 18 months",
+      warranty: "5 years comprehensive",
+    },
+  },
+  {
+    category: "Complete Systems",
+    description:
+      "Our premium package for families who want the best. Includes our 5000L FDA-approved tank, advanced UV purifier, premium guttering system, and enhanced overflow management. Perfect for larger households seeking total water independence.",
+    features: [
+      "5000L FDA-approved tank",
+      "Advanced UV purification",
+      "Premium gutter collection system",
+      "Automated overflow management",
+      "Water level monitoring",
+      "Priority maintenance support",
+    ],
+    hirePurchase: {
+      deposit: 8000,
+      monthlyInstallment: 2000,
+      period: 18,
+    },
+    id: "7",
+    image:
+      "https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=800&q=80",
+    inStock: true,
+    name: "5000L Premium Package",
+    price: 35000,
+    rating: 5.0,
+    specs: {
+      cashPrice: "KES 35,000",
+      components: "5000L Tank + UV Purifier + Premium Accessories",
+      deposit: "KES 8,000",
+      installation: "Free professional installation + training nationwide",
+      monthlyInstallment: "KES 2,000 for 18 months",
+      warranty: "5 years comprehensive",
+    },
+  },
+  {
+    category: "Complete Systems",
+    description:
+      "The ultimate water solution for large families, schools, or small businesses. This package includes our massive 10000L FDA-approved tank, advanced purification systems, and professional-grade installation. Never worry about water scarcity again.",
+    features: [
+      "10000L FDA-approved tank",
+      "Dual purification systems",
+      "Commercial-grade guttering",
+      "Advanced monitoring system",
+      "Backup overflow protection",
+      "Extended warranty coverage",
+    ],
+    hirePurchase: {
+      deposit: 10000,
+      monthlyInstallment: 3500,
+      period: 18,
+    },
+    id: "8",
+    image:
+      "https://images.unsplash.com/photo-1590479773265-7464e5d48118?w=800&q=80",
+    inStock: true,
+    name: "10000L Family System",
+    price: 59500,
+    rating: 5.0,
+    specs: {
+      cashPrice: "KES 59,500",
+      components: "10000L Tank + Dual Purifiers + Commercial Accessories",
+      deposit: "KES 10,000",
+      installation: "Free professional installation + training nationwide",
+      monthlyInstallment: "KES 3,500 for 18 months",
+      warranty: "7 years comprehensive",
+    },
+  },
+  {
+    category: "Accessories",
+    description:
+      "Sturdy steel stand for elevated tank installation. Ensures proper water pressure and protects your tank from ground moisture. Includes all mounting hardware and concrete anchoring bolts. Suitable for tanks up to 5000L.",
+    features: [
+      "Heavy-duty steel construction",
+      "Corrosion-resistant coating",
+      "Includes concrete base kit",
+      "Suitable for tanks up to 5000L",
+      "Easy assembly design",
+      "Professional installation recommended",
+    ],
+    id: "9",
+    image:
+      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
+    inStock: true,
+    name: "Tank Stand & Base Kit",
+    price: 6500,
+    rating: 4.5,
+    specs: {
+      loadCapacity: "6000kg",
+      material: "Galvanized steel",
+      suitableFor: "3000L and 5000L tanks",
+      warranty: "3 years",
+    },
+  },
+  {
+    category: "Accessories",
+    description:
+      "Professional-grade guttering system designed to maximize rainwater collection. Includes downpipes, leaf guards, and first-flush diverter to ensure only clean water enters your tank. Easy to install and maintain.",
+    features: [
+      "UV-resistant PVC guttering",
+      "Leaf and debris guards",
+      "First-flush diverter included",
+      "Easy-clean design",
+      "Suitable for most roof types",
+      "Complete installation hardware",
+    ],
+    id: "10",
+    image:
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=800&q=80",
+    inStock: true,
+    name: "Gutter Collection System",
+    price: 9500,
+    rating: 4.4,
+    specs: {
+      coverage: "Up to 50m of roofing",
+      includes: "Gutters, downpipes, connectors, guards",
+      material: "UV-stabilized PVC",
       warranty: "2 years",
     },
   },
@@ -257,14 +384,6 @@ export default function ProductDetailPage() {
   /* ------------------------ Derive product object ------------------------ */
   const product = React.useMemo(() => products.find((p) => p.id === id), [id]);
 
-  /* ----------------------- Derived/computed values ----------------------- */
-  const discountPercentage = React.useMemo(() => {
-    if (!product?.originalPrice) return 0;
-    return Math.round(
-      ((product.originalPrice - product.price) / product.originalPrice) * 100,
-    );
-  }, [product]);
-
   /* ------------------------------ Handlers ------------------------------- */
   const handleQuantityChange = React.useCallback((newQty: number) => {
     setQuantity((prev) => (newQty >= 1 ? newQty : prev));
@@ -286,7 +405,7 @@ export default function ProductDetailPage() {
     );
     setQuantity(1);
     toast.success(`${product.name} added to cart`);
-    await new Promise((r) => setTimeout(r, 400)); // fake latency
+    await new Promise((r) => setTimeout(r, 400));
     setIsAdding(false);
   }, [addItem, product, quantity]);
 
@@ -295,12 +414,7 @@ export default function ProductDetailPage() {
     return (
       <div className="flex min-h-screen flex-col">
         <main className="flex-1 py-10">
-          <div
-            className={`
-              container px-4
-              md:px-6
-            `}
-          >
+          <div className="container px-4 md:px-6">
             <h1 className="text-3xl font-bold">Product Not Found</h1>
             <p className="mt-4">
               The product you&apos;re looking for doesn&apos;t exist.
@@ -318,12 +432,7 @@ export default function ProductDetailPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1 py-10">
-        <div
-          className={`
-            container px-4
-            md:px-6
-          `}
-        >
+        <div className="container px-4 md:px-6">
           {/* Back link */}
           <Button
             aria-label="Back to products"
@@ -335,18 +444,9 @@ export default function ProductDetailPage() {
           </Button>
 
           {/* Main grid */}
-          <div
-            className={`
-              grid grid-cols-1 gap-8
-              md:grid-cols-2
-            `}
-          >
-            {/* ------------------------ Product image ------------------------ */}
-            <div
-              className={`
-                relative aspect-square overflow-hidden rounded-lg bg-muted
-              `}
-            >
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+            {/* Product image */}
+            <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
               <Image
                 alt={product.name}
                 className="object-cover"
@@ -354,42 +454,28 @@ export default function ProductDetailPage() {
                 priority
                 src={product.image}
               />
-              {discountPercentage > 0 && (
-                <div
-                  className={`
-                    absolute top-2 left-2 rounded-full bg-red-500 px-2 py-1
-                    text-xs font-bold text-white
-                  `}
-                >
-                  -{discountPercentage}%
-                </div>
-              )}
             </div>
 
-            {/* ---------------------- Product info -------------------------- */}
+            {/* Product info */}
             <div className="flex flex-col">
               {/* Title & rating */}
               <div className="mb-6">
                 <h1 className="text-3xl font-bold">{product.name}</h1>
 
                 <div className="mt-2 flex items-center gap-2">
-                  {/* Stars */}
                   <div
                     aria-label={`Rating ${product.rating} out of 5`}
                     className="flex items-center"
                   >
                     {range(5).map((i) => (
                       <Star
-                        className={`
-                          h-5 w-5
-                          ${
-                            i < Math.floor(product.rating)
-                              ? "fill-primary text-primary"
-                              : i < product.rating
-                                ? "fill-primary/50 text-primary"
-                                : "text-muted-foreground"
-                          }
-                        `}
+                        className={`h-5 w-5 ${
+                          i < Math.floor(product.rating)
+                            ? "fill-primary text-primary"
+                            : i < product.rating
+                              ? "fill-primary/50 text-primary"
+                              : "text-muted-foreground"
+                        }`}
                         key={`star-${i}`}
                       />
                     ))}
@@ -400,21 +486,47 @@ export default function ProductDetailPage() {
                 </div>
               </div>
 
-              {/* Category & prices */}
+              {/* Category & price */}
               <div className="mb-6">
                 <p className="text-lg font-medium text-muted-foreground">
                   {product.category}
                 </p>
-                <div className="mt-2 flex items-center gap-2">
+                <div className="mt-2">
                   <span className="text-3xl font-bold">
                     {CURRENCY_FORMATTER.format(product.price)}
                   </span>
-                  {product.originalPrice && (
-                    <span className="text-xl text-muted-foreground line-through">
-                      {CURRENCY_FORMATTER.format(product.originalPrice)}
-                    </span>
-                  )}
+                  <span className="ml-2 text-sm text-muted-foreground">
+                    Cash Price
+                  </span>
                 </div>
+
+                {/* Hire purchase option */}
+                {product.hirePurchase && (
+                  <div className="mt-3 rounded-lg bg-primary/10 p-4">
+                    <p className="font-semibold text-primary">
+                      Hire Purchase Available
+                    </p>
+                    <div className="mt-2 space-y-1 text-sm">
+                      <p>
+                        Deposit:{" "}
+                        <span className="font-medium">
+                          {CURRENCY_FORMATTER.format(
+                            product.hirePurchase.deposit,
+                          )}
+                        </span>
+                      </p>
+                      <p>
+                        Monthly:{" "}
+                        <span className="font-medium">
+                          {CURRENCY_FORMATTER.format(
+                            product.hirePurchase.monthlyInstallment,
+                          )}{" "}
+                          for {product.hirePurchase.period} months
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Description */}
@@ -425,22 +537,18 @@ export default function ProductDetailPage() {
               {/* Stock */}
               <div aria-atomic="true" aria-live="polite" className="mb-6">
                 {product.inStock ? (
-                  <p className="text-sm font-medium text-green-600">In Stock</p>
+                  <p className="text-sm font-medium text-green-600">
+                    In Stock - Free Installation Nationwide
+                  </p>
                 ) : (
                   <p className="text-sm font-medium text-red-500">
-                    Out of Stock
+                    Currently Unavailable
                   </p>
                 )}
               </div>
 
-              {/* Quantity selector & Add to cart */}
-              <div
-                className={`
-                  mb-6 flex flex-col gap-4
-                  sm:flex-row sm:items-center
-                `}
-              >
-                {/* Quantity */}
+              {/* Quantity & Add to cart */}
+              <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center">
                 <div className="flex items-center">
                   <Button
                     aria-label="Decrease quantity"
@@ -451,11 +559,9 @@ export default function ProductDetailPage() {
                   >
                     <Minus className="h-4 w-4" />
                   </Button>
-
-                  <span className="w-12 text-center select-none">
+                  <span className="w-12 select-none text-center">
                     {quantity}
                   </span>
-
                   <Button
                     aria-label="Increase quantity"
                     onClick={() => handleQuantityChange(quantity + 1)}
@@ -466,7 +572,6 @@ export default function ProductDetailPage() {
                   </Button>
                 </div>
 
-                {/* Add to cart */}
                 <Button
                   className="flex-1"
                   disabled={!product.inStock || isAdding}
@@ -481,13 +586,8 @@ export default function ProductDetailPage() {
 
           <Separator className="my-8" />
 
-          {/* ---------------------- Features & Specs ------------------------ */}
-          <div
-            className={`
-              grid grid-cols-1 gap-8
-              md:grid-cols-2
-            `}
-          >
+          {/* Features & Specs */}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {/* Features */}
             <section>
               <h2 className="mb-4 text-2xl font-bold">Features</h2>
@@ -497,7 +597,7 @@ export default function ProductDetailPage() {
                     className="flex items-start"
                     key={`feature-${product.id}-${slugify(feature)}`}
                   >
-                    <span className="mt-1 mr-2 h-2 w-2 rounded-full bg-primary" />
+                    <span className="mr-2 mt-1 h-2 w-2 rounded-full bg-primary" />
                     <span>{feature}</span>
                   </li>
                 ))}

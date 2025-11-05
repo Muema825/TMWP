@@ -1,8 +1,7 @@
-import { ArrowRight, Clock, ShoppingBag, Star, Truck } from "lucide-react";
+import { ArrowRight, Clock, Droplet, ShieldCheck, Star, Truck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import UkraineBanner from "~/ui/components/banners/ukraine-banner";
 import { HeroBadge } from "~/ui/components/hero-badge";
 import { ProductCard } from "~/ui/components/product-card";
 import { TestimonialsSection } from "~/ui/components/testimonials/testimonials-with-marquee";
@@ -20,27 +19,27 @@ import { categories, featuredProductsHomepage, testimonials } from "./mocks";
 const featuresWhyChooseUs = [
   {
     description:
-      "Free shipping on all orders over $50. Fast and reliable delivery to your doorstep.",
+      "Flexible payment plans available. Pay in installments with our higher purchase option.",
+    icon: <ShieldCheck className="h-6 w-6 text-primary" />,
+    title: "Flexible Payment Plans",
+  },
+  {
+    description:
+      "Free delivery and installation across Kenya. Professional setup included.",
     icon: <Truck className="h-6 w-6 text-primary" />,
-    title: "Free Shipping",
+    title: "Free Installation",
   },
   {
     description:
-      "Your payment information is always safe and secure with us. We use industry-leading encryption.",
-    icon: <ShoppingBag className="h-6 w-6 text-primary" />,
-    title: "Secure Checkout",
-  },
-  {
-    description:
-      "Our customer support team is always available to help with any questions or concerns.",
+      "Our team provides ongoing support and maintenance for all water systems.",
     icon: <Clock className="h-6 w-6 text-primary" />,
-    title: "24/7 Support",
+    title: "Ongoing Support",
   },
   {
     description:
-      "We stand behind the quality of every product we sell. 30-day money-back guarantee.",
+      "High-quality rainwater harvesting tanks with 8-layer purification systems.",
     icon: <Star className="h-6 w-6 text-primary" />,
-    title: "Quality Guarantee",
+    title: "Quality Guaranteed",
   },
 ];
 
@@ -53,10 +52,7 @@ export default function HomePage() {
           via-muted/25 to-background
         `}
       >
-        {/* Sample banner */}
-        <UkraineBanner />
-
-        {/* Hero Section */}
+        
         <section
           className={`
             relative overflow-hidden py-24
@@ -95,14 +91,14 @@ export default function HomePage() {
                       lg:leading-[1.1]
                     `}
                   >
-                    Your One-Stop Shop for{" "}
+                    Clean Water for{" "}
                     <span
                       className={`
                         bg-gradient-to-r from-primary to-primary/70 bg-clip-text
                         text-transparent
                       `}
                     >
-                      Everything Tech
+                      Every Home
                     </span>
                   </h1>
                   <p
@@ -111,8 +107,8 @@ export default function HomePage() {
                       md:text-xl
                     `}
                   >
-                    Discover premium products at competitive prices, with fast
-                    shipping and exceptional customer service.
+                    Affordable rainwater harvesting tanks with 8-layer purification systems. 
+                    Flexible payment plans available. Serving all 47 counties in Kenya.
                   </p>
                 </div>
                 <div
@@ -128,16 +124,16 @@ export default function HomePage() {
                       `}
                       size="lg"
                     >
-                      Shop Now <ArrowRight className="h-4 w-4" />
+                      Browse Water Tanks <ArrowRight className="h-4 w-4" />
                     </Button>
                   </Link>
-                  <Link href="/showcase">
+                  <Link href="/payment-plans">
                     <Button
                       className="h-12 px-8 transition-colors duration-200"
                       size="lg"
                       variant="outline"
                     >
-                      View Showcase
+                      View Payment Plans
                     </Button>
                   </Link>
                 </div>
@@ -147,12 +143,16 @@ export default function HomePage() {
                   `}
                 >
                   <div className="flex items-center gap-1.5">
-                    <Truck className="h-5 w-5 text-primary/70" />
-                    <span>Free shipping over $50</span>
+                    <Droplet className="h-5 w-5 text-primary/70" />
+                    <span>8-Layer Purification</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Clock className="h-5 w-5 text-primary/70" />
-                    <span>24/7 Customer Support</span>
+                    <ShieldCheck className="h-5 w-5 text-primary/70" />
+                    <span>Flexible Payment Options</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Truck className="h-5 w-5 text-primary/70" />
+                    <span>Free Installation Nationwide</span>
                   </div>
                 </div>
               </div>
@@ -170,12 +170,12 @@ export default function HomePage() {
                   `}
                 />
                 <Image
-                  alt="Shopping experience"
+                  alt="Rainwater harvesting tank"
                   className="object-cover"
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  src="https://images.unsplash.com/photo-1624767735494-1929dc24ad43?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+                  src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&auto=format&fit=crop&q=60"
                 />
               </div>
             </div>
@@ -209,12 +209,11 @@ export default function HomePage() {
                   md:text-4xl
                 `}
               >
-                Shop by Category
+                Our Products & Services
               </h2>
               <div className="mt-2 h-1 w-12 rounded-full bg-primary" />
               <p className="mt-4 max-w-2xl text-center text-muted-foreground">
-                Find the perfect device for your needs from our curated
-                collections
+                Complete water solutions from storage to purification
               </p>
             </div>
             <div
@@ -258,7 +257,7 @@ export default function HomePage() {
                       {category.name}
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      {category.productCount} products
+                      {category.productCount} options
                     </p>
                   </div>
                 </Link>
@@ -288,11 +287,11 @@ export default function HomePage() {
                   md:text-4xl
                 `}
               >
-                Featured Products
+                Popular Water Tank Systems
               </h2>
               <div className="mt-2 h-1 w-12 rounded-full bg-primary" />
               <p className="mt-4 max-w-2xl text-center text-muted-foreground">
-                Check out our latest and most popular tech items
+                Our most popular rainwater harvesting and purification systems
               </p>
             </div>
             <div
@@ -345,7 +344,7 @@ export default function HomePage() {
                   md:text-4xl
                 `}
               >
-                Why Choose Us
+                Why Choose MaM Water Project
               </h2>
               <div className="mt-2 h-1 w-12 rounded-full bg-primary" />
               <p
@@ -354,7 +353,7 @@ export default function HomePage() {
                   md:text-lg
                 `}
               >
-                We offer the best shopping experience with premium features
+                We make clean water accessible for families across all 47 counties in Kenya
               </p>
             </div>
             <div
@@ -411,7 +410,7 @@ export default function HomePage() {
           >
             <TestimonialsSection
               className="py-0"
-              description="Don't just take our word for it - hear from our satisfied customers"
+              description="Hear from families who have transformed their access to clean water"
               testimonials={testimonials}
               title="What Our Customers Say"
             />
@@ -451,7 +450,7 @@ export default function HomePage() {
                     md:text-4xl
                   `}
                 >
-                  Ready to Upgrade Your Tech?
+                  Ready to Access Clean Water?
                 </h2>
                 <p
                   className={`
@@ -459,9 +458,8 @@ export default function HomePage() {
                     md:text-xl
                   `}
                 >
-                  Join thousands of satisfied customers and experience the best
-                  tech products on the market. Sign up today for exclusive deals
-                  and offers.
+                  Join thousands of families across Kenya with reliable access to safe, 
+                  clean water. Affordable payment plans available to fit your budget.
                 </p>
                 <div
                   className={`
@@ -474,7 +472,7 @@ export default function HomePage() {
                       className="h-12 px-8 transition-colors duration-200"
                       size="lg"
                     >
-                      Sign Up Now
+                      Get Started
                     </Button>
                   </Link>
                   <Link href="/products">
@@ -483,7 +481,7 @@ export default function HomePage() {
                       size="lg"
                       variant="outline"
                     >
-                      Browse Products
+                      View Water Tanks
                     </Button>
                   </Link>
                 </div>

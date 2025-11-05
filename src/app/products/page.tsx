@@ -39,70 +39,104 @@ const slugify = (str: string) =>
 
 const products: Product[] = [
   {
-    category: "Audio",
+    category: "Water Tanks",
     id: "1",
     image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80",
     inStock: true,
-    name: "Premium Wireless Headphones",
-    originalPrice: 249.99,
-    price: 199.99,
-    rating: 4.5,
-  },
-  {
-    category: "Wearables",
-    id: "2",
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    inStock: true,
-    name: "Smart Watch Series 5",
-    originalPrice: 349.99,
-    price: 299.99,
-    rating: 4.2,
-  },
-  {
-    category: "Photography",
-    id: "3",
-    image:
-      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    inStock: false,
-    name: "Professional Camera Kit",
-    originalPrice: 1499.99,
-    price: 1299.99,
-    rating: 4.8,
-  },
-  {
-    category: "Furniture",
-    id: "4",
-    image:
-      "https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    inStock: true,
-    name: "Ergonomic Office Chair",
-    originalPrice: 299.99,
-    price: 249.99,
-    rating: 4.6,
-  },
-  {
-    category: "Electronics",
-    id: "5",
-    image:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    inStock: true,
-    name: "Smartphone Pro Max",
-    originalPrice: 1099.99,
-    price: 999.99,
+    name: "3000L Rainwater Harvesting Tank",
+    price: 19500,
     rating: 4.9,
   },
   {
-    category: "Electronics",
+    category: "Water Tanks",
+    id: "2",
+    image:
+      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    inStock: true,
+    name: "5000L Rainwater Storage Tank",
+    price: 25000,
+    rating: 4.9,
+  },
+  {
+    category: "Water Tanks",
+    id: "3",
+    image:
+      "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
+    inStock: true,
+    name: "10000L Large Capacity Tank",
+    price: 49500,
+    rating: 5.0,
+  },
+  {
+    category: "Purification Systems",
+    id: "4",
+    image:
+      "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=800&q=80",
+    inStock: true,
+    name: "8-Layer Tap Water Purifier",
+    price: 12000,
+    rating: 4.8,
+  },
+  {
+    category: "Purification Systems",
+    id: "5",
+    image:
+      "https://images.unsplash.com/photo-1624969862293-b749659ccc4e?w=800&q=80",
+    inStock: true,
+    name: "Advanced UV Water Filter",
+    price: 18000,
+    rating: 4.7,
+  },
+  {
+    category: "Complete Systems",
     id: "6",
     image:
-      "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1583266722259-2d6f3d8e65?w=800&q=80",
     inStock: true,
-    name: 'Ultra HD Smart TV 55"',
-    originalPrice: 899.99,
-    price: 799.99,
-    rating: 4.7,
+    name: "3000L Complete Water System",
+    price: 28500,
+    rating: 4.9,
+  },
+  {
+    category: "Complete Systems",
+    id: "7",
+    image:
+      "https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=800&q=80",
+    inStock: true,
+    name: "5000L Premium Package",
+    price: 35000,
+    rating: 5.0,
+  },
+  {
+    category: "Complete Systems",
+    id: "8",
+    image:
+      "https://images.unsplash.com/photo-1590479773265-7464e5d48118?w=800&q=80",
+    inStock: true,
+    name: "10000L Family System",
+    price: 59500,
+    rating: 5.0,
+  },
+  {
+    category: "Accessories",
+    id: "9",
+    image:
+      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
+    inStock: true,
+    name: "Tank Stand & Base Kit",
+    price: 6500,
+    rating: 4.5,
+  },
+  {
+    category: "Accessories",
+    id: "10",
+    image:
+      "https://images.unsplash.com/photo-1615486511484-92e172cc4fe0?w=800&q=80",
+    inStock: true,
+    name: "Gutter Collection System",
+    price: 9500,
+    rating: 4.4,
   },
 ];
 
@@ -175,9 +209,9 @@ export default function ProductsPage() {
             `}
           >
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">Products</h1>
+              <h1 className="text-3xl font-bold tracking-tight">Our Water Solutions</h1>
               <p className="mt-1 text-lg text-muted-foreground">
-                Browse our latest products and find something you&apos;ll love.
+                Browse our complete range of water tanks and purification systems. Flexible payment plans available.
               </p>
             </div>
 

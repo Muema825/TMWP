@@ -1,47 +1,43 @@
 export const featuredProductsHomepage = [
   {
-    category: "Audio",
+    category: "Water Tanks",
     id: "1",
     image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80",
     inStock: true,
-    name: "Premium Wireless Headphones",
-    originalPrice: 249.99,
-    price: 199.99,
-    rating: 4.5,
+    name: "3000L Rainwater Harvesting Tank",
+    price: 19500,
+    rating: 4.9,
   },
   {
-    category: "Wearables",
+    category: "Water Tanks",
     id: "2",
     image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
     inStock: true,
-    name: "Smart Watch Series 5",
-    originalPrice: 349.99,
-    price: 299.99,
-    rating: 4.2,
+    name: "5000L Rainwater Storage Tank",
+    price: 25000,
+    rating: 4.9,
   },
   {
-    category: "Smartphones",
-    id: "5",
+    category: "Water Tanks",
+    id: "3",
     image:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
     inStock: true,
-    name: "Smartphone Pro Max",
-    originalPrice: 1099.99,
-    price: 999.99,
+    name: "10000L Large Capacity Tank",
+    price: 49500,
+    rating: 5.0,
+  },
+  {
+    category: "Purification Systems",
+    id: "4",
+    image:
+      "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=800&q=80",
+    inStock: true,
+    name: "8-Layer Tap Water Purifier",
+    price: 12000,
     rating: 4.8,
-  },
-  {
-    category: "Audio",
-    id: "6",
-    image:
-      "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    inStock: true,
-    name: "Bluetooth Earbuds Pro",
-    originalPrice: 179.99,
-    price: 149.99,
-    rating: 4.4,
   },
 ];
 
@@ -49,27 +45,27 @@ export const featuredProductsHomepage = [
 export const categories = [
   {
     image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    name: "Audio",
-    productCount: 12,
+      "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80",
+    name: "Water Tanks",
+    productCount: 3,
   },
   {
     image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    name: "Wearables",
-    productCount: 8,
+      "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=800&q=80",
+    name: "Purification Systems",
+    productCount: 2,
   },
   {
     image:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    name: "Smartphones",
-    productCount: 15,
+      "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80",
+    name: "Complete Systems",
+    productCount: 3,
   },
   {
     image:
-      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    name: "Laptops",
-    productCount: 10,
+      "https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=800&q=80",
+    name: "Accessories",
+    productCount: 5,
   },
 ];
 
@@ -78,46 +74,46 @@ export const testimonials = [
   {
     author: {
       avatar:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
-      handle: "@sarahtechie",
-      name: "Sarah Johnson",
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face&q=80",
+      handle: "@gracemutua",
+      name: "Grace Mutua",
     },
-    text: "Honestly, I don't even remember how many times I've ordered from here. Never once had a bad experience. Stuff just works, and when I had a question, support was on it in like, five minutes.",
+    text: "Before MaM Water Project, we spent hours fetching water every day here in Machakos. Now with our 5000L tank and purifier, we have clean water right at home. The hire purchase plan made it affordable for our family.",
   },
   {
     author: {
       avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      handle: "@mikedev",
-      name: "Michael Chen",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&q=80",
+      handle: "@johnotieno",
+      name: "John Otieno",
     },
-    text: "Wasn't expecting much tbh, but ended up being super impressed. Got a keyboard that feels chef's kiss and arrived faster than other stores. No complaints.",
+    text: "The installation team came all the way to Kisumu and was professional. They explained everything clearly. The FDA-approved tank gives us peace of mind that our water is safe. Worth every shilling!",
   },
   {
     author: {
       avatar:
-        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face",
-      handle: "@emdigital",
-      name: "Emily Rodriguez",
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face&q=80",
+      handle: "@marywanjiku",
+      name: "Mary Wanjiku",
     },
-    text: "I was totally lost picking a laptop for freelance work. Dropped them a message and got a thoughtful reply within the hour. They didn't push the priciest option either, which I respect. Love what I got.",
+    text: "I was worried about the cost of a 10000L tank, but paying KES 8,000 deposit and then KES 3,000 monthly worked perfectly for my budget. Now my children in Kiambu have clean water. Thank you MaM!",
   },
   {
     author: {
       avatar:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-      handle: "@davidtech",
-      name: "David Park",
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face&q=80",
+      handle: "@peterkamau",
+      name: "Peter Kamau",
     },
-    text: "Site's clean, checkout was quick, and my order showed up two days early. Which never happens. Already eyeing my next upgrade 👀",
+    text: "The support team has been amazing even though we're in Nakuru. The corrugated body makes the tank so durable, and it's been standing strong for over a year now. Best investment ever!",
   },
   {
     author: {
       avatar:
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
-      handle: "@sophiareviews",
-      name: "Sophia Martinez",
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face&q=80",
+      handle: "@faithakinyi",
+      name: "Faith Akinyi",
     },
-    text: "Finally. A tech store that doesn't make me feel dumb. Everything's explained in plain English, and their chat team didn't treat me like I was annoying them. 10/10.",
+    text: "Our community in Busia has seen real change since MaM came. The 3000L tanks are perfect for our families. Clean water means healthier children. So glad this service is now available across Kenya!",
   },
 ];
