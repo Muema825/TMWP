@@ -6,7 +6,9 @@ next-env.d.ts
 .DS_Store
 .vercel
 *.log*
-.venv
+venv/
+env/
+env.local/
 .idea
 .next
 .exe
